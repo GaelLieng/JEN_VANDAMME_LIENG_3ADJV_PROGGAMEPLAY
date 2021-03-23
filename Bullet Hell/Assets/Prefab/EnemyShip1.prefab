@@ -133,7 +133,7 @@ MonoBehaviour:
   startTimeBetweenShot: 5
   bullet: {fileID: 6663767208528720912, guid: 6c92a8ea94716874e9601fcb81a40067, type: 3}
   shootPoint: {fileID: 24879964229322877}
-  attack: 25
+  attack: 50
   cooldownTime3Shoot: 0.5
   cooldownTimeShoot: 2
   canShoot: 1

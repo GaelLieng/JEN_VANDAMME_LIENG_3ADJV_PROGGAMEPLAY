@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - targetPlayer
+  - Wall
+  - Enemy
+  - StopMove
   layers:
   - Default
   - TransparentFX

@@ -9,8 +9,8 @@ public class Player : MonoBehaviour
     public float moveSpeed;
     private Rigidbody2D myRigidbody;
 
-    private int health = 3;
-
+    public float health ;
+    public float maxHealth = 100f;
     private Vector2 moveInput;
     private Vector2 moveVelocity;
 
@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
         myRigidbody = GetComponent<Rigidbody2D>();
         a = transform.Find("a").gameObject;
         b = transform.Find("b").gameObject;
+        health = maxHealth;
     }
 
     // Update is called once per frame
@@ -36,6 +37,13 @@ public class Player : MonoBehaviour
         }
 
         delay++;
+        
+        if (health <= 0)
+        {
+            health = 0f;
+            gameObject.SetActive(false);
+            Application.LoadLevel(Application.loadedLevel);
+        }
     }
 
     void FixedUpdate()
@@ -50,6 +58,11 @@ public class Player : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+    
+    public void TakeDmg(float dmg)
+    {
+        health -= dmg;
     }
 
     void Shoot()

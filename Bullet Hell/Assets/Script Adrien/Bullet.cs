@@ -8,7 +8,7 @@ public class Bullet : MonoBehaviour
     private Vector2 moveDirection;
 
     private float moveSpeed;
-
+    public float attack = 25f;
     private void OnEnable()
     {
         Invoke(nameof(Destroy),3f);
@@ -45,5 +45,20 @@ public class Bullet : MonoBehaviour
     private void OnDestroy()
     {
         CancelInvoke();
+    }
+   
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        //if an object with the tag "Player" enter the box collider, inflicts damage to player's life point and destroy the bullet
+        
+        if (other.CompareTag("Player"))
+        {
+            other.gameObject.GetComponent<Player>().TakeDmg(attack);
+            Debug.Log("-25hp");
+            Destroy();  
+        }
+        
+        //if an object with the tag Wall enter the box collider, destroy the bullet
+   
     }
 }

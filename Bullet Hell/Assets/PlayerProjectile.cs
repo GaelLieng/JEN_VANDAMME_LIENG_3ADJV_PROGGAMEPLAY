@@ -6,6 +6,7 @@ public class PlayerProjectile : MonoBehaviour
 {
     private Rigidbody2D myRigidbody;
     private int dir = 1;
+    public float attack = 25f;
     
     // Start is called before the first frame update
     void Start()
@@ -22,5 +23,26 @@ public class PlayerProjectile : MonoBehaviour
     void Update()
     {
         myRigidbody.velocity = new Vector2(0, 6*dir);
+    }
+    void DestroyBullet()
+    {
+        Destroy(gameObject);
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        //if an object with the tag "Player" enter the box collider, inflicts damage to player's life point and destroy the bullet
+        
+        if (other.CompareTag("Enemy"))
+        {
+            other.gameObject.GetComponent<EnemyLife>().HurtEnemy(attack);
+            Debug.Log("-25hp");
+            DestroyBullet();  
+        }
+        
+        //if an object with the tag Wall enter the box collider, destroy the bullet
+        if (other.CompareTag("Wall"))
+        {
+            DestroyBullet();  
+        }
     }
 }

@@ -12,7 +12,7 @@ public class Spawner : MonoBehaviour
 	// Use this for initialization
 	void Start () {
 		spawnAllowed = true;
-		InvokeRepeating (nameof(SpawnAMonster), 0f, 1f);
+		InvokeRepeating (nameof(SpawnAMonster), 0f, 2f);
 	}
 
 	void SpawnAMonster()

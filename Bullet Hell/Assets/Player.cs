@@ -13,7 +13,8 @@ public class Player : MonoBehaviour
     public float maxHealth = 100f;
     private Vector2 moveInput;
     private Vector2 moveVelocity;
-
+    public float cooldownTimeShoot= 0.1f;
+    private float nextShootTime = 0;
     private int delay = 0;
 
     // Start is called before the first frame update
@@ -31,9 +32,10 @@ public class Player : MonoBehaviour
         moveInput = new Vector2(Input.GetAxisRaw("Horizontal"),Input.GetAxisRaw("Vertical"));
         moveVelocity = moveInput * moveSpeed;
 
-        if (Input.GetKey(KeyCode.Space) && delay>30)
+        if (Time.time > nextShootTime)
         {
             Shoot();
+            nextShootTime = Time.time + cooldownTimeShoot;
         }
 
         delay++;

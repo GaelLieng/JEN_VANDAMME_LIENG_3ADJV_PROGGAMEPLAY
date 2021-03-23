@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,8 @@ public class MoveEnemy : MonoBehaviour
     private float moveSpeed;
 
     private bool moveRight;
+
+    public bool goforward = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,25 +20,41 @@ public class MoveEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.x > 3f)
+        if (goforward)
         {
-            moveRight = false;
-        }
-        else if(transform.position.x<-3f)
-        {
-            moveRight = true;
-        }
-
-        if (moveRight)
-        {
-            transform.position =new Vector2(transform.position.x+moveSpeed *Time.deltaTime,transform.position.y);
+            transform.position =new Vector2(transform.position.x ,transform.position.y -moveSpeed *Time.deltaTime);
         }
         else
         {
+            if (transform.position.x > 3f)
             {
-                transform.position =new Vector2(transform.position.x-moveSpeed *Time.deltaTime,transform.position.y);
-                    
+                moveRight = false;
             }
+            else if(transform.position.x<-3f)
+            {
+                moveRight = true;
+            }
+
+            if (moveRight)
+            {
+                transform.position =new Vector2(transform.position.x+moveSpeed *Time.deltaTime,transform.position.y);
+            }
+            else
+            {
+                {
+                    transform.position =new Vector2(transform.position.x-moveSpeed *Time.deltaTime,transform.position.y);
+                    
+                }
+            }
+        }
+        
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Wall"))
+        {
+            goforward = false;
         }
     }
 }

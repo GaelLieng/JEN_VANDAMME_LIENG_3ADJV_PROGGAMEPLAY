@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3089294518003988428}
   - component: {fileID: 3089294518003988429}
-  - component: {fileID: 3089294518003988426}
+  - component: {fileID: 867824286654598804}
   - component: {fileID: 3089294518003988430}
   - component: {fileID: 3089294518003988431}
   m_Layer: 0
@@ -86,7 +86,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3089294518003988426
+--- !u!114 &867824286654598804
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,7 +95,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3089294518003988427}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60c01720e98f94246b82b5f4c3a7b8a1, type: 3}
+  m_Script: {fileID: 11500000, guid: 6091df0ae4a23ea489246758ad080b56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
@@ -104,9 +104,7 @@ MonoBehaviour:
   bullet: {fileID: 6663767208528720912, guid: 6c92a8ea94716874e9601fcb81a40067, type: 3}
   shootPoint: {fileID: 3089294519769370556}
   attack: 25
-  cooldownTime3Shoot: 0
   cooldownTimeShoot: 2
-  canShoot: 1
 --- !u!114 &3089294518003988430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,7 +129,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

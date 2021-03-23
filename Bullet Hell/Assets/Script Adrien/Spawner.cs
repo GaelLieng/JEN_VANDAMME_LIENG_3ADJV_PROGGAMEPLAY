@@ -8,11 +8,11 @@ public class Spawner : MonoBehaviour
 	public GameObject[] monsters;
 	int randomSpawnPoint, randomMonster;
 	public static bool spawnAllowed;
-
+    public float TimeRespawn=2f;
 	// Use this for initialization
 	void Start () {
 		spawnAllowed = true;
-		InvokeRepeating (nameof(SpawnAMonster), 0f, 2f);
+		InvokeRepeating (nameof(SpawnAMonster), 0f, TimeRespawn);
 	}
 
 	void SpawnAMonster()

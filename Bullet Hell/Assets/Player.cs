@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
         if (health <= 0)
         {
             health = 0f;
-            gameObject.SetActive(false);
+            
             Application.LoadLevel(Application.loadedLevel);
         }
     }
@@ -74,5 +74,15 @@ public class Player : MonoBehaviour
         Instantiate(Projectile, a.transform.position, Quaternion.identity);
         Instantiate(Projectile, b.transform.position, Quaternion.identity);
     }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        //if an object with the tag "Player" enter the box collider, inflicts damage to player's life point and destroy the bullet
+        
+        if (other.CompareTag("Enemy"))
+        {
+            Application.LoadLevel(Application.loadedLevel);
+        }
+        
     
+    }
 }

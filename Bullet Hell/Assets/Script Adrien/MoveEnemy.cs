@@ -20,12 +20,7 @@ public class MoveEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (goforward)
-        {
-            transform.position =new Vector2(transform.position.x ,transform.position.y -moveSpeed *Time.deltaTime);
-        }
-        else
-        {
+      
             if (transform.position.x > 3f)
             {
                 moveRight = false;
@@ -46,15 +41,9 @@ public class MoveEnemy : MonoBehaviour
                     
                 }
             }
-        }
+        
         
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Wall"))
-        {
-            goforward = false;
-        }
-    }
+    
 }

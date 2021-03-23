@@ -1,38 +1,54 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
-
-
-public class TAccessor : MonoBehaviour
+public class TAccessor<T> where T : TModule
 {
-    public List<string> mylist = null;
-
-    public Dictionary<string, List<GameObject>> dicModules = null;
-    public List<GameObject> modules = null;
-
-    public int x = 0; //Test
-
-    public void Start()
+    private static TAccessor<T> _instance;
+    public static TAccessor<T> Instance()
     {
-        dicModules = new Dictionary<string, List<GameObject>>();
-        mylist = new List<string>(new string[] { "Collider", "Pool", "Renderer" });
-        modules = new List<GameObject>();
+        if (_instance == null)
+            _instance = new TAccessor<T>();
+        return _instance;
+    }
 
-        foreach (string gameScript in mylist)
-        {
-            for (int i = 0; i < this.transform.childCount; i++) // Liste les salles
-            {
-                GameObject child = this.transform.GetChild(i).gameObject;
-                if (child.GetComponent(gameScript) != null)
-                {
-                    x++;
-                }
-                modules.Add(child);
-            }
-            dicModules.Add(gameScript, modules);
-            modules.Clear();
-        }
+    Dictionary<int, T> Modules;
+
+    public TAccessor()
+    {
+        Modules = new Dictionary<int, T>();
+    }
+
+    public void Register(int parObjectId, T parModule)
+    {
+        Modules.Add(parObjectId, parModule);
+    }
+
+    public void Unregister(int parObjectId)
+    {
+        Modules.Remove(parObjectId);
+    }
+
+    public Dictionary<int, T> GetAllModule()
+    {
+        return Modules;
+    }
+
+    public T TryGetModule(int parObjectId)
+    {
+        if (ContainObject(parObjectId))
+            return Modules[parObjectId];
+
+        return (default(T));
+    }
+
+    public int GetNumberRegisteredModules()
+    {
+        return Modules.Count;
+    }
+
+    public bool ContainObject(int parObjectId)
+    {
+        return Modules.ContainsKey(parObjectId);
     }
 }
